@@ -1,0 +1,22 @@
+name: Deploy
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_run:
+    workflows: ["Pull"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: docker stop
+        # stop and down all the containers running
+        run: sudo docker-compose down
+      - name: docker start
+        # start and up all the containers.
+        run: sudo docker-compose up
