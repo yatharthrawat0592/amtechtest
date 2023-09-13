@@ -3,7 +3,7 @@ name: Pull
 # Only trigger, when the pull workflow succeeded
 on:
   workflow_run:
-    workflows: ["Docker Image CI"]
+    workflows: ["CI"]
     types:
       - completed
 
