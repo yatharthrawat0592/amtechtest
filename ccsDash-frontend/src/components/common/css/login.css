@@ -1,0 +1,71 @@
+.loginMain{
+    padding: 60px 50px 60px 50px;
+}
+
+.mainLoginLabel{
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 65px;
+}
+
+.loginMain .loginBtn{
+    margin-left: 9px;
+}
+
+#emailLabel{
+    margin-bottom: 5px;
+}
+
+#passwordLabel{
+    margin-bottom: 5px;
+}
+
+.loginBtn:hover{
+    border:1px solid rgba(113, 113, 155, 0.712);
+    border-radius: 5px;
+    background-color: rgba(113, 113, 155, 0.712);
+}
+
+.mainEmail{
+    margin-bottom: 20px;
+}
+#emailText{
+    border: 2px solid rgba(113, 113, 155, 0.712);
+    border-radius: 5px;
+    padding: 10px;
+}
+#emailText:hover{
+    border: 2px solid blue;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.mainPassword{
+    margin-bottom: 20px;
+}
+
+#passwordText{
+    border: 2px solid rgba(113, 113, 155, 0.712);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#passwordText:hover{
+    border: 2px solid blue;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.login-card{
+    margin-top: 20px;
+}
+
+.signUpBtn{
+    float: right;
+    margin-right: 7px !important;
+}
+
+.loginText {
+    margin-top: -40px;
+    margin-left: 80px;
+}

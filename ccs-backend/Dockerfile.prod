@@ -1,0 +1,7 @@
+FROM node:16-bullseye-slim
+ENV APP_DIR=/usr/src/app
+RUN mkdir $APP_DIR && chown -R node:node $APP_DIR
+WORKDIR $APP_DIR
+COPY --chown=node:node . $APP_DIR
+RUN npm ci --only=production&& npm cache clean --force
+CMD ["npm", "start:prod"]

@@ -1,0 +1,35 @@
+# Use root/example as user/password credentials
+version: '3.8'
+
+services:
+  migration:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: migration
+    environment:
+      AWS_ACCESS_KEY_ID: root
+      AWS_SECRET_ACCESS_KEY: pass
+      AWS_REGION: us-east-1
+      REGION: 'us-east-1'
+      DEPLOY_ENV: 'local'
+      DB_USERNAME: 'root'
+      DB_PASSWORD: 'root'
+      COMMON_DB_NAME: 'db_mims_reserved_common_test'
+      CLIENT_DB_NAME: 'db_mims_reserved_client_tests'
+      DB_HOST: 'localhost'
+      DB_PORT: '3306'
+      KINESIS_STREAMS: 'orders order-notifications stock-notifications inventory-notifications invoices'
+      KINESIS_ENDPOINT: 'http://kinesis:4567'
+      DYNAMODB_ENDPOINT: 'http://dynamodb:8000'
+      DB_CLUSTER_WRITER_ENDPOINT: 'mims-db'
+      DB_PROXY_READER_ENDPOINT: 'mims-db'
+
+
+    # stdin_open: true # docker run -i
+    # tty: true        # docker run -t
+    # entrypoint: '/bin/bash'
+
+networks:
+  default:
+    name: mims_network

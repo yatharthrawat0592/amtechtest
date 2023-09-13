@@ -1,0 +1,6 @@
+Dockerfile*
+docker-compose*
+/build
+node_modules/
+**/.history/**
+ccs-backend/node_modules

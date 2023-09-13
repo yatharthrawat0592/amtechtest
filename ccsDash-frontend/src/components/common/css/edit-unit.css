@@ -1,0 +1,93 @@
+.edit-unit-container {
+  width: 445px;
+  height: 599px;
+  display: flex;
+  z-index: 200;
+  position: relative;
+  box-shadow: 5px 5px 10px 0px #7c7373;
+  align-items: center;
+  border-color: #283edc;
+  border-style: ridge;
+  border-width: 4px;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #1e1b1b;
+}
+.edit-unit-text {
+  color: #bfbfc4;
+}
+.edit-unit-form {
+  width: 362px;
+  height: 352px;
+  display: flex;
+  margin-top: var(--dl-space-space-threeunits);
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.edit-unit-textinput {
+  align-self: center;
+  margin-top: var(--dl-space-space-halfunit);
+  margin-left: var(--dl-space-space-halfunit);
+  margin-right: var(--dl-space-space-halfunit);
+  margin-bottom: var(--dl-space-space-halfunit);
+  background-color: var(--dl-color-gray-white);
+}
+.edit-unit-textinput1 {
+  align-self: center;
+  margin-top: var(--dl-space-space-halfunit);
+  margin-left: var(--dl-space-space-halfunit);
+  margin-right: var(--dl-space-space-halfunit);
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.edit-unit-textinput2 {
+  align-self: center;
+  margin-top: var(--dl-space-space-halfunit);
+  margin-left: var(--dl-space-space-halfunit);
+  margin-right: var(--dl-space-space-halfunit);
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.edit-unit-textinput3 {
+  align-self: center;
+  margin-top: var(--dl-space-space-halfunit);
+  margin-left: var(--dl-space-space-halfunit);
+  margin-right: var(--dl-space-space-halfunit);
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.edit-unit-textinput4 {
+  align-self: center;
+  margin-top: var(--dl-space-space-halfunit);
+  margin-left: var(--dl-space-space-halfunit);
+  margin-right: var(--dl-space-space-halfunit);
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.edit-unit-textinput5 {
+  align-self: center;
+  margin-top: var(--dl-space-space-halfunit);
+  margin-left: var(--dl-space-space-halfunit);
+  margin-right: var(--dl-space-space-halfunit);
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.edit-unit-container1 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit-unit-button {
+  display: flex;
+  margin-right: var(--dl-space-space-twounits);
+}
+.edit-unit-button1 {
+  margin-left: var(--dl-space-space-twounits);
+  padding-left: 1rem;
+}
+@media(max-width: 767px) {
+  .edit-unit-container {
+    width: 408px;
+    height: 477px;
+    background-color: #1e1b1b;
+  }
+}

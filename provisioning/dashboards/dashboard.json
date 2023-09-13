@@ -1,0 +1,828 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "d9ab1d6d-b0fb-441f-9397-f9f9e9486c1"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__series.name}",
+          "mappings": [],
+          "min": 18,
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "flowcfm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "dataset": "ccs",
+          "datasource": {
+            "type": "mysql",
+            "uid": "d9ab1d6d-b0fb-441f-9397-f9f9e9486c1"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \r\n  cfm, \r\n  updateReceived, \r\n  CONCAT(unitIdRef, '') as metric,\r\n  description\r\nFROM ccs.tblccsunitdata \r\nd INNER JOIN ccs.tblccsunit u ON d.unitIdRef = u.unitId\r\nWHERE unitIdRef IN (${unitIdSelect:sqlstring}) \r\nORDER BY updateReceived DESC LIMIT 1",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "cfm",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "updateReceived",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 1,
+            "orderBy": {
+              "property": {
+                "name": "updateReceived",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "DESC",
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "b89bb988-cdef-4012-b456-71855652e00d",
+                  "properties": {
+                    "field": "unitId",
+                    "operator": "equal",
+                    "value": [
+                      1
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "99bb9ba9-89ab-4cde-b012-31854b93fd74",
+              "type": "group"
+            },
+            "whereString": "unitId = 1"
+          },
+          "table": "tblccsunitdata"
+        }
+      ],
+      "title": "CFM Unit Dynamic Gauge",
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "description"
+            ]
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "d9ab1d6d-b0fb-441f-9397-f9f9e9486c1"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Filter Life",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "dataset": "ccs",
+          "datasource": {
+            "type": "mysql",
+            "uid": "d9ab1d6d-b0fb-441f-9397-f9f9e9486c1"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \r\n  updateReceived,\r\n  filterLife, \r\n  CONCAT(unitIdRef, '') as metric,\r\n  description\r\nFROM ccs.tblccsunitdata\r\nd INNER JOIN ccs.tblccsunit u ON d.unitIdRef = u.unitId\r\nWHERE unitIdRef IN (${unitIdSelect:sqlstring})\r\nORDER BY updateReceived DESC \r\nLIMIT ${dataLimit}",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "cfm",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "updateReceived",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "unitId",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "orderBy": {
+              "property": {
+                "name": "updateReceived",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "ASC",
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "8b89bba9-4567-489a-bcde-f185564e114a",
+                  "properties": {
+                    "field": "unitId",
+                    "operator": "equal",
+                    "value": [
+                      1
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "b9ba9b99-89ab-4cde-b012-318559749a5a",
+                  "properties": {
+                    "field": "unitId",
+                    "operator": "equal",
+                    "value": [
+                      2
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "99bb9ba9-89ab-4cde-b012-31854b93fd74",
+              "properties": {
+                "conjunction": "OR"
+              },
+              "type": "group"
+            },
+            "whereString": "(unitId = 1 OR unitId = 2)"
+          },
+          "table": "tblccsunitdata"
+        }
+      ],
+      "title": "Filter for $unitIdSelect",
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "metric",
+              "description"
+            ]
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "d9ab1d6d-b0fb-441f-9397-f9f9e9486c1"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "CFM",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "cfm"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "dataset": "ccs",
+          "datasource": {
+            "type": "mysql",
+            "uid": "d9ab1d6d-b0fb-441f-9397-f9f9e9486c1"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \r\n  updateReceived,\r\n  cfm, \r\n  CONCAT(unitIdRef, '') as metric,\r\n  description\r\nFROM ccs.tblccsunitdata\r\nd INNER JOIN ccs.tblccsunit u ON d.unitIdRef = u.unitId\r\nWHERE unitIdRef IN (${unitIdSelect:sqlstring})\r\nORDER BY updateReceived DESC \r\nLIMIT ${dataLimit}",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "cfm",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "updateReceived",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "unitId",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "orderBy": {
+              "property": {
+                "name": "updateReceived",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "ASC",
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "8b89bba9-4567-489a-bcde-f185564e114a",
+                  "properties": {
+                    "field": "unitId",
+                    "operator": "equal",
+                    "value": [
+                      1
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "b9ba9b99-89ab-4cde-b012-318559749a5a",
+                  "properties": {
+                    "field": "unitId",
+                    "operator": "equal",
+                    "value": [
+                      2
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "99bb9ba9-89ab-4cde-b012-31854b93fd74",
+              "properties": {
+                "conjunction": "OR"
+              },
+              "type": "group"
+            },
+            "whereString": "(unitId = 1 OR unitId = 2)"
+          },
+          "table": "tblccsunitdata"
+        }
+      ],
+      "title": "CFM for $unitIdSelect",
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "metric",
+              "description"
+            ]
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "d9ab1d6d-b0fb-441f-9397-f9f9e9486c1"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-blue",
+            "mode": "continuous-blues"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Temp (C)",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 13
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "dataset": "ccs",
+          "datasource": {
+            "type": "mysql",
+            "uid": "d9ab1d6d-b0fb-441f-9397-f9f9e9486c1"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \r\n  updateReceived,\r\n  temperature, \r\n  CONCAT(unitIdRef, '') as metric,\r\n  description\r\nFROM ccs.tblccsunitdata\r\nd INNER JOIN ccs.tblccsunit u ON d.unitIdRef = u.unitId\r\nWHERE unitIdRef IN (${unitIdSelect:sqlstring})\r\nORDER BY updateReceived DESC \r\nLIMIT ${dataLimit}",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "cfm",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "updateReceived",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "unitId",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [],
+            "limit": 50,
+            "orderBy": {
+              "property": {
+                "name": "updateReceived",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "ASC",
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "8b89bba9-4567-489a-bcde-f185564e114a",
+                  "properties": {
+                    "field": "unitId",
+                    "operator": "equal",
+                    "value": [
+                      1
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                },
+                {
+                  "id": "b9ba9b99-89ab-4cde-b012-318559749a5a",
+                  "properties": {
+                    "field": "unitId",
+                    "operator": "equal",
+                    "value": [
+                      2
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "99bb9ba9-89ab-4cde-b012-31854b93fd74",
+              "properties": {
+                "conjunction": "OR"
+              },
+              "type": "group"
+            },
+            "whereString": "(unitId = 1 OR unitId = 2)"
+          },
+          "table": "tblccsunitdata"
+        }
+      ],
+      "title": "Temperature (°C) for $unitIdSelect",
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "metric",
+              "description"
+            ]
+          }
+        }
+      ],
+      "type": "timeseries"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "1"
+          ],
+          "value": [
+            "1"
+          ]
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "d9ab1d6d-b0fb-441f-9397-f9f9e9486c1"
+        },
+        "definition": "SELECT unitid FROM tblccsunit",
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "unitIdSelect",
+        "options": [],
+        "query": "SELECT unitid FROM tblccsunit",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "description": "Limit of number of points to plot",
+        "hide": 2,
+        "name": "dataLimit",
+        "query": "250",
+        "skipUrlSync": false,
+        "type": "constant"
+      }
+    ]
+  },
+  "time": {
+    "from": "2023-02-16T08:07:41.000Z",
+    "to": "2023-02-16T08:28:35.000Z"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "CCS Data Visualizer TEST",
+  "uid": "d9ab1d6d-b0fb-441f-9397-f9f9e9486c1",
+  "version": 13,
+  "weekStart": ""
+}
