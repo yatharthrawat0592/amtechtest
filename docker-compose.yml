@@ -44,7 +44,7 @@ services:
       - /usr/src/app/node_modules
     ports:
       - "8800:8800"
-    env_file: ./ccs-backend/.env
+    env_file: ./ccs-backend/sample.env
     environment:
       - NODE_ENV=development
       - DB_HOST=css_database
