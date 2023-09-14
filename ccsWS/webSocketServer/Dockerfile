@@ -1,5 +1,5 @@
 # Docker file CCS Frontend
-FROM node:14-buster as ws
+FROM node:20-buster as ws
 
 # ENV
 ENV APP_DIR=/usr/src/ws
