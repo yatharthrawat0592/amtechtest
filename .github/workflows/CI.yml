@@ -15,5 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-     # To build the project.
+     # To build the project
       run: docker-compose build 
