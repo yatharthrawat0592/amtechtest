@@ -17,6 +17,11 @@ jobs:
       - name: docker stop
         # stop and down all the containers running
         run: sudo docker-compose down
+        
+      - name: image remove
+        # remove all the exited  containers.
+        run: sudo docker container prune
+        
       - name: docker start
         # start and up all the containers.
         run: sudo docker-compose up
