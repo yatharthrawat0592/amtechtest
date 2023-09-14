@@ -1,5 +1,5 @@
 # Docker file CCS Frontend
-FROM node:14-buster as builder
+FROM node:20-buster as builder
 
 # ENV
 ENV APP_DIR=/usr/src/app
