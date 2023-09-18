@@ -4,7 +4,7 @@ FROM node:20-buster as builder
 # ENV
 ENV APP_DIR=/usr/src/app
 
-# Working directory 
+# Working directory.
 RUN mkdir -p $APP_DIR
 WORKDIR $APP_DIR
 
