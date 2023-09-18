@@ -23,7 +23,7 @@ jobs:
         run: sudo docker-compose down
         
       - name: image remove
-        # remove all the exited  containers..
+        # remove all the exited  containers.
         run: sudo docker container prune -f
         
       - name: docker start
