@@ -24,7 +24,7 @@ jobs:
         
       - name: image remove
         # remove all the exited  containers.
-        run: sudo docker container prune -f
+        run: sudo docker container prune 
         
       - name: docker start
         # start and up all the containers.
