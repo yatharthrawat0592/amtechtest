@@ -1,0 +1,31 @@
+name: CD
+
+# Only trigger, when the pull workflow succeeded
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy Image
+      # pull docker image..
+        run: sudo docker-compose pull
+        
+      - name: docker stop
+        # stop and down all the containers running.
+        run: sudo docker-compose down
+        
+      - name: image remove
+        # remove all the exited  containers..
+        run: sudo docker container prune -f
+        
+      - name: docker start
+        # start and up all the containers.
+        run: sudo docker-compose up -d
