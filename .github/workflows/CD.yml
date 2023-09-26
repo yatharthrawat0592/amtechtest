@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - id: permission
-        run: sudo chown -R $USER:$USER /home/github/actions-runner/_work/amtechtest
+        run: sudo chown -R $USER:$USER /home/ubuntu/actions-runner/_work/amtechtest
         
       - uses: actions/checkout@v3
 
