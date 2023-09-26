@@ -27,9 +27,26 @@ jobs:
         # stop and down all the containers running.
         run: sudo docker-compose down
         
-      - name: image remove
-        # remove all the exited  containers.
-        run: sudo docker container prune 
+      - name: image remove ccs-backend
+        run: sudo docker image rm ccs-backend  
+      
+      - name: image remove css-frontend 
+        run: sudo docker image rm ccs-frontend
+      
+      - name: image remove amtechtest_nginx
+        run: sudo docker image rm amtechtest_nginx
+
+      - name: image remove ws-server image
+        run: sudo docker image rm ws-server
+
+      - name: image remove node image
+        run: sudo docker image rm node
+
+      - name: image remove nginx 
+        run: sudo docker image rm nginx  
+
+      - name: image remove grafana 
+        run: sudo docker image rm grafana/grafana
         
       - name: docker start
         # start and up all the containers.
