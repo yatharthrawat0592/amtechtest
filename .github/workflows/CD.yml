@@ -39,8 +39,8 @@ jobs:
       - name: image remove ws-server image
         run: sudo docker image rm ws-server
 
-      - name: image remove node image
-        run: sudo docker image rm node
+     # - name: image remove node image
+      #  run: sudo docker image rm node
 
       - name: image remove nginx 
         run: sudo docker image rm nginx  
