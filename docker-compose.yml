@@ -31,10 +31,9 @@ services:
       - ./ccs-backend/mysql-dump/ccs_tblCcsFirmware.sql:/docker-entrypoint-initdb.d/ccs_tblCcsFirmware.sql
       - ./ccs-backend/mysql-dump/ccs_userinfo.sql:/docker-entrypoint-initdb.d/ccs_userinfo.sql
     networks:
-       network:
-        ipv4_address: 172.20.0.24
+      - network
     tty: true
-    
+
   server:
     build:
       context: ./ccs-backend
@@ -43,8 +42,7 @@ services:
     container_name: amtech-ccs-node-server
     command: /usr/src/app/node_modules/.bin/nodemon index.js
     networks:
-       network:
-         ipv4_address: 172.20.0.19
+      - network
     volumes:
       - ./ccs-backend/:/usr/src/app
       - /usr/src/app/node_modules
@@ -56,8 +54,9 @@ services:
       - DB_HOST=css_database
     depends_on:
       - ccs-db
-    client:
-     build:
+
+  client:
+    build:
       context: ./ccsDash-frontend
       dockerfile: Dockerfile
     image: ccs-frontend
@@ -73,9 +72,8 @@ services:
     depends_on:
       - server
     networks:
-       network:
-         ipv4_address: 172.20.0.18
-        
+      - network
+
   grafana:
     image: grafana/grafana:latest
     container_name: amtech-ccs-grafana
@@ -108,16 +106,13 @@ services:
       - GF_AUTH_OAUTH_ALLOW_INSECURE_EMAIL_LOOKUP=true
       - GF_AUTH_GENERIC_OAUTH_AUTO_LOGIN=true
       - GF_AUTH_DISABLE_SIGNOUT_MENU=true
-  networks:
-    network:
-      ipv4_address: 172.20.0.24
-  
-  
+    networks:
+      - network
+
   ws-server:
     container_name: amtech-ws-server
     restart: on-failure
     image: ws-server
-    # network_mode: "host"
     build:
       context: ./ccsWS/webSocketServer
       dockerfile: Dockerfile
@@ -129,8 +124,7 @@ services:
     depends_on:
       - server
     networks:
-       network:
-        ipv4_address: 172.20.0.21
+      - network
 
   nginx:
     restart: always
@@ -142,22 +136,16 @@ services:
     depends_on:
       - client
     networks:
-       network:
-        ipv4_address: 172.20.0.15
-      
+      - network
+
 networks:
   network:
     driver: bridge
     ipam:
       config:
-         - subnet: 172.20.0.0/16
-           gateway: 172.20.0.1
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
+
 volumes:
-  data-volumes:
-  # node_modules:
-  # grafana-storage:
-  #   external: true
   db-data:
   grafana-data:
-  web-root:
-    driver: local
