@@ -4,6 +4,9 @@ services:
   ccs-db:
     container_name: css_database
     image: mysql:5.7.34
+    networks:
+      amtech-dns:
+        ipv4_address: 172.20.0.10
     command:
       - "--default-authentication-plugin=mysql_native_password"
     restart: always
@@ -128,8 +131,12 @@ services:
       - client
       
 networks:
-  default:
-    name: app-networks
+  amtech-dns:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+          gateway: 172.20.0.1
 
 volumes:
   data-volumes:
