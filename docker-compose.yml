@@ -132,9 +132,9 @@ services:
     app-networks:
         ipam:
           driver: default
-            config:
-              - subnet: "172.20.0.0/24"
-              - subnet: "2001:3984:3989::/64"
+             config:
+                - subnet: "172.20.0.0/24"
+                  gateway: 172.20.0.1
 
 volumes:
   data-volumes:
