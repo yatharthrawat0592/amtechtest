@@ -24,7 +24,7 @@ jobs:
         run: sudo apt install -y docker-compose  
 
       - name: Deploy Image
-      # pull docker image.
+     
         run: sudo docker-compose pull
         
       - name: docker stop
