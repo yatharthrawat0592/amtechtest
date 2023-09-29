@@ -56,8 +56,7 @@ services:
       - DB_HOST=css_database
     depends_on:
       - ccs-db
-    links:
-      - ccs-db
+    
   client:
     build:
       context: ./ccsDash-frontend
@@ -130,8 +129,7 @@ services:
       - "4888:4888"
     depends_on:
       - server
-    networks:
-      - default
+    
   nginx:
     restart: always
     build:
