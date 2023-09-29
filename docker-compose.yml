@@ -75,7 +75,7 @@ services:
       - "3001:3001"
     depends_on:
       - server
-      networks:
+     networks:
        network:
         ipv4_address: 172.20.0.18
         
