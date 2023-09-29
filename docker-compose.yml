@@ -39,6 +39,9 @@ services:
       context: ./ccs-backend
       dockerfile: Dockerfile
     image: ccs-backend
+    networks:
+      amtech-dns:
+        ipv4_address: 172.20.0.11
     container_name: amtech-ccs-node-server
     command: /usr/src/app/node_modules/.bin/nodemon index.js
     # network_mode: "host"
@@ -60,6 +63,9 @@ services:
       context: ./ccsDash-frontend
       dockerfile: Dockerfile
     image: ccs-frontend
+    networks:
+      amtech-dns:
+        ipv4_address: 172.20.0.12
     container_name: amtech-ccs-client
     command: npm start
     volumes:
@@ -73,6 +79,9 @@ services:
       - server
   grafana:
     image: grafana/grafana:latest
+    networks:
+      amtech-dns:
+        ipv4_address: 172.20.0.13
     container_name: amtech-ccs-grafana
     ports:
       - 3000:3000/tcp
@@ -107,6 +116,9 @@ services:
     container_name: amtech-ws-server
     restart: on-failure
     image: ws-server
+    networks:
+      amtech-dns:
+        ipv4_address: 172.20.0.14
     # network_mode: "host"
     build:
       context: ./ccsWS/webSocketServer
