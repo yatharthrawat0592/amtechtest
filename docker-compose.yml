@@ -130,7 +130,7 @@ services:
       - client
       
 networks:
-  network:
+ - network:
     driver: bridge
      ipam: 
         driver: default
