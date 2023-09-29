@@ -130,7 +130,8 @@ services:
       - client
       
 networks:
-     name: app-networks
+  network:
+    driver: bridge
      ipam: 
         driver: default
         config: 
