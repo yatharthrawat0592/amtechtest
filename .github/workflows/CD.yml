@@ -23,7 +23,7 @@ jobs:
         run: sudo apt-get update  
       
       - name: install docker
-        run: sudo install -y docker-compose  
+        run: sudo apt install -y docker-compose  
 
       - name: Deploy Image
       # pull docker image.
