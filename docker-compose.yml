@@ -131,7 +131,7 @@ services:
       - "4888:4888"
     depends_on:
       - server
-   networks:
+    networks:
        network:
         ipv4_address: 172.20.0.21
 
