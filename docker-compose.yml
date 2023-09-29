@@ -1,4 +1,4 @@
-version: '2.3'
+version: '3.8'
 
 services:
   ccs-db:
@@ -30,11 +30,7 @@ services:
       - ./ccs-backend/mysql-dump/ccs_tblCcsInfoStage.sql:/docker-entrypoint-initdb.d/ccs_tblCcsInfoStage.sql
       - ./ccs-backend/mysql-dump/ccs_tblCcsFirmware.sql:/docker-entrypoint-initdb.d/ccs_tblCcsFirmware.sql
       - ./ccs-backend/mysql-dump/ccs_userinfo.sql:/docker-entrypoint-initdb.d/ccs_userinfo.sql
-    networks:
-       network:
-           ipv4_address: 172.20.0.24
     tty: true
-
   server:
     build:
       context: ./ccs-backend
@@ -42,8 +38,7 @@ services:
     image: ccs-backend
     container_name: amtech-ccs-node-server
     command: /usr/src/app/node_modules/.bin/nodemon index.js
-    networks:
-      - network
+    # network_mode: "host"
     volumes:
       - ./ccs-backend/:/usr/src/app
       - /usr/src/app/node_modules
@@ -55,7 +50,6 @@ services:
       - DB_HOST=css_database
     depends_on:
       - ccs-db
-
   client:
     build:
       context: ./ccsDash-frontend
@@ -72,9 +66,6 @@ services:
       - "3001:3001"
     depends_on:
       - server
-    networks:
-      - network
-
   grafana:
     image: grafana/grafana:latest
     container_name: amtech-ccs-grafana
@@ -107,13 +98,11 @@ services:
       - GF_AUTH_OAUTH_ALLOW_INSECURE_EMAIL_LOOKUP=true
       - GF_AUTH_GENERIC_OAUTH_AUTO_LOGIN=true
       - GF_AUTH_DISABLE_SIGNOUT_MENU=true
-    networks:
-      - network
-
   ws-server:
     container_name: amtech-ws-server
     restart: on-failure
     image: ws-server
+    # network_mode: "host"
     build:
       context: ./ccsWS/webSocketServer
       dockerfile: Dockerfile
@@ -125,8 +114,7 @@ services:
     depends_on:
       - server
     networks:
-      - network
-
+      - default
   nginx:
     restart: always
     build:
@@ -136,17 +124,17 @@ services:
       - "443:443"
     depends_on:
       - client
-    networks:
-      - network
-
+      
 networks:
-  network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
-          gateway: 172.20.0.1
+  default:
+    name: app-networks
 
 volumes:
+  data-volumes:
+  # node_modules:
+  # grafana-storage:
+  #   external: true
   db-data:
   grafana-data:
+  web-root:
+    driver: local
