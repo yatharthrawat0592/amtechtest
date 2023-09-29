@@ -144,7 +144,7 @@ services:
       - "443:443"
     depends_on:
       - client
-      networks:
+    networks:
        network:
         ipv4_address: 172.20.0.15
       
