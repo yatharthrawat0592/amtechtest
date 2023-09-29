@@ -131,7 +131,7 @@ services:
 networks:
   default:
     name: app-networks
-       driver: default
+       driver: bridge
             config:
                 - subnet: "172.20.0.0/24
                   gateway: "172.20.0.1
