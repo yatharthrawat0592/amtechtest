@@ -51,7 +51,7 @@ services:
     depends_on:
       - ccs-db
     links:
-      - "ccs-db:database"  
+      - ccs-db
   client:
     build:
       context: ./ccsDash-frontend
@@ -129,7 +129,7 @@ services:
       
 networks:
   default:
-     name: app-networks
+    name: app-networks
 
 volumes:
   data-volumes:
