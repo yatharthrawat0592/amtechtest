@@ -32,7 +32,7 @@ services:
       - ./ccs-backend/mysql-dump/ccs_userinfo.sql:/docker-entrypoint-initdb.d/ccs_userinfo.sql
     
     networks:
-      network:
+      - network:
         ipv4_address: 172.20.0.24
         tty: true
   server:
