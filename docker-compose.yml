@@ -33,8 +33,7 @@ services:
     tty: true
     networks:
       name: app-networks
-          default:
-                ipv4_address: 172.20.0.24
+         ipv4_address: 172.20.0.24
   server:
     build:
       context: ./ccs-backend
