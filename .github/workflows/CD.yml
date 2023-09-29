@@ -1,5 +1,4 @@
 name: CD
-
 # Only trigger, when the pull workflow succeeded
 on:
   workflow_run:
@@ -11,9 +10,8 @@ jobs:
   notify:
     runs-on: self-hosted
 
-   
-       steps:
-       
+    steps:
+      
       - id: permission
         run: sudo chown -R $USER:$USER /home/ubuntu/actions-runner/_work/amtechtest
         
