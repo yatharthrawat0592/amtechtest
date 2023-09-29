@@ -30,10 +30,11 @@ services:
       - ./ccs-backend/mysql-dump/ccs_tblCcsInfoStage.sql:/docker-entrypoint-initdb.d/ccs_tblCcsInfoStage.sql
       - ./ccs-backend/mysql-dump/ccs_tblCcsFirmware.sql:/docker-entrypoint-initdb.d/ccs_tblCcsFirmware.sql
       - ./ccs-backend/mysql-dump/ccs_userinfo.sql:/docker-entrypoint-initdb.d/ccs_userinfo.sql
-    tty: true
-   networks:
-      app-networks:
+    
+    networks:
+      network:
         ipv4_address: 172.20.0.24
+        tty: true
   server:
     build:
       context: ./ccs-backend
@@ -134,8 +135,6 @@ networks:
         driver: default
         config: 
               - subnet": 172.20.0.0/16
-                gateway: 172.20.0.1
-
 volumes:
   data-volumes:
   # node_modules:
