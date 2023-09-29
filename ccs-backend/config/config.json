@@ -3,7 +3,7 @@
     "username": "ccs-amtech",
     "password": "ccs_amtech@2023",
     "database": "ccs",
-    "host": "localhost",
+    "host": "172.20.0.10",
     "dialect": "mysql",
     "port": 3307
   },
