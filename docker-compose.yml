@@ -131,9 +131,11 @@ services:
 networks:
      name: app-networks
      driver: bridge
-      config:
-        - subnet: "172.20.0.0/24
-          gateway: "172.20.0.1
+     ipam: 
+        driver: default
+        config: 
+              - subnet": 172.20.0.0/16
+                gateway: 172.20.0.1
 
 volumes:
   data-volumes:
