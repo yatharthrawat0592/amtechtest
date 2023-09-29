@@ -30,9 +30,6 @@ services:
       - ./ccs-backend/mysql-dump/ccs_tblCcsInfoStage.sql:/docker-entrypoint-initdb.d/ccs_tblCcsInfoStage.sql
       - ./ccs-backend/mysql-dump/ccs_tblCcsFirmware.sql:/docker-entrypoint-initdb.d/ccs_tblCcsFirmware.sql
       - ./ccs-backend/mysql-dump/ccs_userinfo.sql:/docker-entrypoint-initdb.d/ccs_userinfo.sql
-    networks:
-      app-networks:
-        ipv4_address: 172.20.0.10
     tty: true
   server:
     build:
@@ -53,6 +50,8 @@ services:
       - DB_HOST=css_database
     depends_on:
       - ccs-db
+    links:
+      - "ccs-db:database"  
   client:
     build:
       context: ./ccsDash-frontend
@@ -129,12 +128,8 @@ services:
       - client
       
   networks:
-    app-networks:
-        ipam:
-          driver: default
-             config:
-                - subnet: "172.20.0.0/24"
-                  gateway: 172.20.0.1
+    default:
+      name: app-networks
 
 volumes:
   data-volumes:
