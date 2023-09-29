@@ -127,9 +127,9 @@ services:
     depends_on:
       - client
       
-  networks:
-    default:
-      name: app-networks
+networks:
+  default:
+     name: app-networks
 
 volumes:
   data-volumes:
