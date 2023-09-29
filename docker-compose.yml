@@ -32,7 +32,8 @@ services:
       - ./ccs-backend/mysql-dump/ccs_userinfo.sql:/docker-entrypoint-initdb.d/ccs_userinfo.sql
     tty: true
     networks:
-            default:
+      name: app-networks
+          default:
                 ipv4_address: 172.20.0.24
   server:
     build:
