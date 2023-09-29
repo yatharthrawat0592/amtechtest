@@ -129,12 +129,11 @@ services:
       - client
       
 networks:
-  default:
-    name: app-networks
-       driver: bridge
-            config:
-                - subnet: "172.20.0.0/24
-                  gateway: "172.20.0.1
+     name: app-networks
+     driver: bridge
+      config:
+        - subnet: "172.20.0.0/24
+          gateway: "172.20.0.1
 
 volumes:
   data-volumes:
