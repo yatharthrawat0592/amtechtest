@@ -19,6 +19,12 @@ jobs:
         
       - uses: actions/checkout@v3
 
+      - name: update vm
+        run: sudo apt-get update  
+      
+      - name: install docker
+        run: sudo install -y docker-compose  
+
       - name: Deploy Image
       # pull docker image.
         run: sudo docker-compose pull
