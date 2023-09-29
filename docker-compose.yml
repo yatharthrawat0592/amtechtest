@@ -35,6 +35,7 @@ services:
        network:
         ipv4_address: 172.20.0.24
     tty: true
+    
   server:
     build:
       context: ./ccs-backend
@@ -54,6 +55,10 @@ services:
       - DB_HOST=css_database
     depends_on:
       - ccs-db
+    networks:
+      network:
+        ipv4_address: 172.20.0.19
+        
   client:
     build:
       context: ./ccsDash-frontend
@@ -70,6 +75,10 @@ services:
       - "3001:3001"
     depends_on:
       - server
+      networks:
+       network:
+        ipv4_address: 172.20.0.18
+        
   grafana:
     image: grafana/grafana:latest
     container_name: amtech-ccs-grafana
@@ -102,6 +111,11 @@ services:
       - GF_AUTH_OAUTH_ALLOW_INSECURE_EMAIL_LOOKUP=true
       - GF_AUTH_GENERIC_OAUTH_AUTO_LOGIN=true
       - GF_AUTH_DISABLE_SIGNOUT_MENU=true
+  networks:
+    network:
+      ipv4_address: 172.20.0.24
+  
+  
   ws-server:
     container_name: amtech-ws-server
     restart: on-failure
@@ -117,8 +131,10 @@ services:
       - "4888:4888"
     depends_on:
       - server
-    networks:
-      - default
+   networks:
+       network:
+        ipv4_address: 172.20.0.21
+
   nginx:
     restart: always
     build:
@@ -128,6 +144,9 @@ services:
       - "443:443"
     depends_on:
       - client
+      networks:
+       network:
+        ipv4_address: 172.20.0.15
       
 networks:
   network:
