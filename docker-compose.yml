@@ -30,7 +30,6 @@ services:
       - ./ccs-backend/mysql-dump/ccs_tblCcsInfoStage.sql:/docker-entrypoint-initdb.d/ccs_tblCcsInfoStage.sql
       - ./ccs-backend/mysql-dump/ccs_tblCcsFirmware.sql:/docker-entrypoint-initdb.d/ccs_tblCcsFirmware.sql
       - ./ccs-backend/mysql-dump/ccs_userinfo.sql:/docker-entrypoint-initdb.d/ccs_userinfo.sql
-    
     networks:
        network:
         ipv4_address: 172.20.0.24
@@ -43,7 +42,9 @@ services:
     image: ccs-backend
     container_name: amtech-ccs-node-server
     command: /usr/src/app/node_modules/.bin/nodemon index.js
-    # network_mode: "host"
+    networks:
+       network:
+         ipv4_address: 172.20.0.19
     volumes:
       - ./ccs-backend/:/usr/src/app
       - /usr/src/app/node_modules
@@ -55,10 +56,6 @@ services:
       - DB_HOST=css_database
     depends_on:
       - ccs-db
-    networks:
-      network:
-        ipv4_address: 172.20.0.19
-        
     client:
      build:
       context: ./ccsDash-frontend
