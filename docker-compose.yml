@@ -13,7 +13,7 @@ services:
     ports:
       - 3307:3306
     environment:
-      MYSQL_ROOT_HOST: 172.29.0.10
+      MYSQL_HOST: 172.29.0.10
       MYSQL_USER: ccs-amtech
       MYSQL_ROOT_PASSWORD: root     
       MYSQL_PASSWORD: ccs_amtech@2023
