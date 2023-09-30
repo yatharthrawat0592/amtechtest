@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "::set-output name=images::$(docker image ls -q)"
           
-      - name: Delete Specific Images
+      - name: Delete Docker Images
         run: |
            images_to_delete="ccs-backend css-frontend amtechtest_nginx ws-server grafana/grafana nginx"
             images="${{ steps.list_images.outputs.images }}"
