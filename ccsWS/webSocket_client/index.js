@@ -1,4 +1,5 @@
 const http = require('http');
+const https = require('https');
 const WebSocket = require('ws');
 const readline = require('readline');
 const { ack_status, pkt_status } = require('./utils/constants');
@@ -28,7 +29,7 @@ let hdr_sent = {
 
 
 function connect() {
-  const ws = new WebSocket('ws://127.0.0.1:4888');
+  const ws = new WebSocket('ws://51.20.34.163:4888');
   const interface = createInterface();
   curr_pkt = 3;
 
