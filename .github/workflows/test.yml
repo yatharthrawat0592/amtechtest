@@ -1,0 +1,51 @@
+name: CD
+# Only trigger, when the pull workflow succeeded
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  notify:
+    runs-on: self-hosted
+
+    steps:
+      
+      - id: permission
+        run: sudo chown -R $USER:$USER /home/ubuntu/actions-runner/_work/amtechtest
+        
+      - uses: actions/checkout@v3
+
+      - name: update vm
+        run: sudo apt-get update  
+      
+      - name: install docker
+        run: sudo apt install -y docker-compose 
+
+      - name: docker stop
+        # stop and down all the containers running.
+        run: sudo docker-compose down
+
+     
+      - name: List Docker Images
+        id: list_images
+        run: |
+          echo "::set-output name=images::$(docker image ls -q)"
+          
+      - name: Delete Specific Images
+        run: |
+         images_to_delete="ccs-backend css-frontend amtechtest_nginx ws-server grafana/grafana nginx"
+          images="${{ steps.list_images.outputs.images }}"
+          for image in $images_to_delete; do
+            if [[ "$images" == *"$image"* ]]; then
+              echo "Deleting $image..."
+              docker image rm "$image"
+            else
+              echo "Image $image not found."
+            fi
+          done
+      - name: docker start
+        # start and up all the containers
+        run: sudo docker-compose up -d
+
+
