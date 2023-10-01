@@ -30,7 +30,7 @@ jobs:
       - name: List Docker Images
         id: list_images
         run: |
-          echo "::set-output name=images::$(sudo docker image ls -q)"
+          echo "::set-output name=images::$(sudo docker image ls)"
           
       - name: Delete Docker Images
         run: |
