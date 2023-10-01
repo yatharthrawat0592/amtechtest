@@ -29,9 +29,10 @@ jobs:
       - name: Remove Docker Images
         run: |
               images_to_delete="ccs-backend css-frontend amtechtest_nginx ws-server grafana/grafana nginx"
-              images="${{ steps.list_images.outputs.images}}"
+              image="${{ steps.list_images.outputs.images}}"
+              echo $image
                 for image in $images_to_delete; do
-                   if [[ "$images" == *"$images"* ]]; then
+                   if [[ "$images" == *"$image"* ]]; then
                    echo "Deleting $image..."
                      sudo docker image rm "$images"
                    else
