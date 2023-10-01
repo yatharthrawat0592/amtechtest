@@ -30,7 +30,7 @@ jobs:
       - name: List Docker Images
         id: list_images
         run: |
-          echo "::set-output name=images::$(docker image ls -q)"
+          echo "::set-output name=images::$(sudo docker image ls -q)"
           
       - name: Delete Docker Images
         run: |
@@ -39,7 +39,7 @@ jobs:
             for image in $images_to_delete; do
               if [[ "$images" == *"$image"* ]]; then
                 echo "Deleting $image..."
-                docker image rm "$image"
+               sudo docker image rm "$image"
               else
                 echo "Image $image not found."
               fi
