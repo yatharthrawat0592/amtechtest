@@ -1,16 +1,12 @@
 name: Test
-
 on:
   push:
     branches: [ "main" ]
-
-  
 jobs:
   notify:
     runs-on: self-hosted
 
     steps:
-      
       - id: permission
         run: sudo chown -R $USER:$USER /home/ubuntu/actions-runner/_work/amtechtest
         
@@ -25,7 +21,7 @@ jobs:
         # stop and down all the containers running.
         run: sudo docker-compose down
      
-      - name: List Docker Images
+     
       - id: list_images
         run: |
               echo "images::$(sudo docker image ls) >> $GITHUB_OUTPUT
