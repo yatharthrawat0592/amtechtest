@@ -24,7 +24,7 @@ jobs:
      
       - id: list_images
         run: |
-              echo "images=$(sudo docker image ls)" >> $GITHUB_OUTPUT
+              echo "images=$(sudo docker image ls -q)" >> $GITHUB_OUTPUT
               
       - name: Remove Docker Images
         run: |
