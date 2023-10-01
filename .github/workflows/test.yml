@@ -27,23 +27,26 @@ jobs:
         run: sudo docker-compose down
 
      
-      - name: List Docker Images
-        id: list_images
+       - name: List Docker Images
+      - id: list_images
         run: |
-          echo "::set-output name=images::$(sudo docker image ls)"
+             
+              echo "images=$(sudo docker image ls) >> $GITHUB_OUTPUT
+         
           
-      - name: Delete Docker Images
+      - name: Delete Specific Images
         run: |
-           images_to_delete="ccs-backend css-frontend amtechtest_nginx ws-server grafana/grafana nginx"
-            images="${{ steps.list_images.outputs.images }}"
-            for image in $images_to_delete; do
-              if [[ "$images" == *"$image"* ]]; then
-                echo "Deleting $image..."
-               sudo docker image rm "$image"
-              else
-                echo "Image $image not found."
-              fi
-            done
+          images_to_delete="ccs-backend css-frontend amtechtest_nginx ws-server grafana/grafana nginx"
+          images="${{ steps.list_images.outputs.images }}"
+          for image in $images_to_delete; do
+            if [[ "$images" == *"$image"* ]]; then
+              echo "Deleting $image..."
+              sudo docker image rm "$image"
+            else
+              echo "Image $image_name is not available locally.
+            fi
+          done 
+
       - name: docker start
         # start and up all the containers
         run: sudo docker-compose up -d
