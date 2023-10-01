@@ -27,7 +27,7 @@ jobs:
      
       - name: Remove Docker Images
       - id: list_images
-        run:  echo "images=$(sudo docker image ls) >> $GITHUB_OUTPUT
+        run:  echo "images::$(sudo docker image ls) >> $GITHUB_OUTPUT
       - run:  images_to_delete="ccs-backend css-frontend amtechtest_nginx ws-server grafana/grafana nginx"
               images="${{ steps.list_images.outputs.images}}"
               for image in $images_to_delete; do
