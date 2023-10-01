@@ -24,11 +24,11 @@ jobs:
      
       - id: list_images
         run: |
-              echo "images=$(sudo docker image ls )" 
+              echo "image=$(sudo docker image ls )" 
               
       - name: Remove Docker Images
         run: |
-              images="ccs-backend css-frontend amtechtest_nginx ws-server grafana/grafana nginx"
+              images_to_delete="ccs-backend css-frontend amtechtest_nginx ws-server grafana/grafana nginx"
               image="${{ steps.list_images.outputs.images}}"
               echo $image
                 for image in $images_to_delete; do
