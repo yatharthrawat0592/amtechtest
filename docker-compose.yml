@@ -4,16 +4,12 @@ services:
   ccs-db:
     container_name: css_database
     image: mysql:5.7.34
-    networks:
-      amtech-dns:
-        ipv4_address: 172.20.0.10
     command:
       - "--default-authentication-plugin=mysql_native_password"
     restart: always
     ports:
-      - "3306:3306"
+      - 3307:3306
     environment:
-      MYSQL_ROOT_HOST: 172.20.0.10
       MYSQL_USER: ccs-amtech
       MYSQL_ROOT_PASSWORD: root     
       MYSQL_PASSWORD: ccs_amtech@2023
@@ -40,9 +36,6 @@ services:
       context: ./ccs-backend
       dockerfile: Dockerfile
     image: ccs-backend
-    networks:
-      amtech-dns:
-        ipv4_address: 172.20.0.11
     container_name: amtech-ccs-node-server
     command: /usr/src/app/node_modules/.bin/nodemon index.js
     # network_mode: "host"
@@ -57,15 +50,11 @@ services:
       - DB_HOST=css_database
     depends_on:
       - ccs-db
-    
   client:
     build:
       context: ./ccsDash-frontend
       dockerfile: Dockerfile
     image: ccs-frontend
-    networks:
-      amtech-dns:
-        ipv4_address: 172.20.0.12
     container_name: amtech-ccs-client
     command: npm start
     volumes:
@@ -79,9 +68,6 @@ services:
       - server
   grafana:
     image: grafana/grafana:latest
-    networks:
-      amtech-dns:
-        ipv4_address: 172.20.0.13
     container_name: amtech-ccs-grafana
     ports:
       - 3000:3000/tcp
@@ -116,9 +102,6 @@ services:
     container_name: amtech-ws-server
     restart: on-failure
     image: ws-server
-    networks:
-      amtech-dns:
-        ipv4_address: 172.20.0.14
     # network_mode: "host"
     build:
       context: ./ccsWS/webSocketServer
@@ -130,7 +113,8 @@ services:
       - "4888:4888"
     depends_on:
       - server
-    
+    networks:
+      - default
   nginx:
     restart: always
     build:
@@ -140,17 +124,10 @@ services:
       - "443:443"
     depends_on:
       - client
-    networks:
-      amtech-dns:
-        ipv4_address: 172.20.0.9
       
 networks:
-  amtech-dns:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.0/24
-          gateway: 172.20.0.1
+  default:
+    name: app-networks
 
 volumes:
   data-volumes:
