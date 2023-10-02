@@ -43,6 +43,7 @@ jobs:
       - name: image remove css-backend
         env:
                images: ${{ steps.image-css-backend.outputs.images }}
+        run: |
                 if [[ "$images" == "ccs-backend" ]]; then
                    echo "Deleting ccs-backend ..."
                      sudo docker image rm ccs-backend
@@ -57,7 +58,8 @@ jobs:
       - name: image remove amtechtest_nginx
         env:
                images: ${{ steps.image-amtechtest_nginx.outputs.images }}
-                if [[ "$images" == "amtechtest_nginx" ]]; then
+        run: |
+               if [[ "$images" == "amtechtest_nginx" ]]; then
                    echo "Deleting amtechtest_nginx ..."
                      sudo docker image rm amtechtest_nginx
                 else
@@ -72,6 +74,7 @@ jobs:
       - name: image remove ws-server
         env:
                images: ${{ steps.image-ws-server.outputs.images }}
+        run: |
                 if [[ "$images" == "ws-server" ]]; then
                    echo "Deleting ws-server ..."
                      sudo docker image rm ws-server
@@ -87,6 +90,7 @@ jobs:
       - name: image remove nginx
         env:
                images: ${{ steps.image-nginx.outputs.images }}
+        run: |       
                 if [[ "$images" == "nginx" ]]; then
                    echo "Deleting nginx ..."
                      sudo docker image rm nginx
@@ -101,6 +105,7 @@ jobs:
       - name: image remove grafana
         env:
                images: ${{ steps.image-image-grafana.outputs.images }}
+        run: |      
                 if [[ "$images" == "grafana" ]]; then
                    echo "Deleting grafana ..."
                      sudo docker image rm grafana
