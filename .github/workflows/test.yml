@@ -42,46 +42,46 @@ jobs:
         run: |
               echo "images=$(sudo docker images  --filter=reference='ccs-backend' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
-       - name: image remove css-backend
+      - name: image remove css-backend
         env:
                images: ${{ steps.image-css-backend.outputs.images }}
-              if [[ "$images" == "ccs-backend" ]]; then
+                if [[ "$images" == "ccs-backend" ]]; then
                    echo "Deleting ccs-backend ..."
                      sudo docker image rm ccs-backend
-              else
+                else
                    echo "Image ccs-backend is not available locally."
-              fi    
+                fi    
        
       - id: image-amtechtest_nginx
         name: check image-amtechtest_nginx 
         run: |
               echo "images=$(sudo docker images  --filter=reference='amtechtest_nginx' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
-       - name: image remove amtechtest_nginx
+      - name: image remove amtechtest_nginx
         env:
                images: ${{ steps.image-amtechtest_nginx.outputs.images }}
-              if [[ "$images" == "amtechtest_nginx" ]]; then
+                if [[ "$images" == "amtechtest_nginx" ]]; then
                    echo "Deleting amtechtest_nginx ..."
                      sudo docker image rm amtechtest_nginx
-              else
+                else
                       echo "Image amtechtest_nginx is not available locally."
-              fi
+                fi
                      
  
-   - id: image-ws-server
+      - id: image-ws-server
         name: check image-ws-server
         run: |
               echo "images=$(sudo docker images  --filter=reference='ws-server' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
-       - name: image remove ws-server
+      - name: image remove ws-server
         env:
                images: ${{ steps.image-ws-server.outputs.images }}
-              if [[ "$images" == "ws-server" ]]; then
+                if [[ "$images" == "ws-server" ]]; then
                    echo "Deleting ws-server ..."
                      sudo docker image rm ws-server
-              else
+                else
                    echo "Image ws-server is not available locally."
-               fi
+                fi
 
                
       - id: image-nginx
@@ -89,22 +89,22 @@ jobs:
         run: |
               echo "images=$(sudo docker images  --filter=reference='nginx' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
-       - name: image remove nginx
+      - name: image remove nginx
         env:
                images: ${{ steps.image-nginx.outputs.images }}
-              if [[ "$images" == "nginx" ]]; then
+                if [[ "$images" == "nginx" ]]; then
                    echo "Deleting nginx ..."
                      sudo docker image rm nginx
-              else
+                else
                     echo "Image nginx is not available locally."
-              fi
+                fi
               
       - id: image-grafana
         name: check image-grafana
         run: |
               echo "images=$(sudo docker images  --filter=reference='grafana' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
-       - name: image remove grafana
+      - name: image remove grafana
         env:
                images: ${{ steps.image-image-grafana.outputs.images }}
                 if [[ "$images" == "grafana" ]]; then
