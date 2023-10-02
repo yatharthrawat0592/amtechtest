@@ -22,7 +22,6 @@ jobs:
         run: sudo docker-compose down
 
       - id: image-css-frontend 
-        name: check image-css-frontend 
         run: |
               echo "images=$(sudo docker images  --filter=reference='ccs-frontend' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
               
@@ -38,7 +37,6 @@ jobs:
               fi
      
       - id: image-css-backend 
-        name: check image-css-backend 
         run: |
               echo "images=$(sudo docker images  --filter=reference='ccs-backend' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
@@ -53,7 +51,6 @@ jobs:
                 fi    
        
       - id: image-amtechtest_nginx
-        name: check image-amtechtest_nginx 
         run: |
               echo "images=$(sudo docker images  --filter=reference='amtechtest_nginx' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
@@ -69,7 +66,6 @@ jobs:
                      
  
       - id: image-ws-server
-        name: check image-ws-server
         run: |
               echo "images=$(sudo docker images  --filter=reference='ws-server' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
@@ -85,7 +81,6 @@ jobs:
 
                
       - id: image-nginx
-        name: check image-nginx 
         run: |
               echo "images=$(sudo docker images  --filter=reference='nginx' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
@@ -100,7 +95,6 @@ jobs:
                 fi
               
       - id: image-grafana
-        name: check image-grafana
         run: |
               echo "images=$(sudo docker images  --filter=reference='grafana' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
