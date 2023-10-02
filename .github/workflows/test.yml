@@ -23,7 +23,7 @@ jobs:
 
       - name: image remove css-frontend 
         run: |
-              echo "images=$(sudo docker images css-frontend )"
+              images=$(sudo docker images css-frontend)
               if [[ "$images" == "ccs-frontend" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
@@ -32,7 +32,7 @@ jobs:
      
       - name: image remove css-backend
         run: |
-              echo "images=$(sudo docker images ccs-backend )"
+              images=$(sudo docker images ccs-backend)
               if [[ "$images" == "ccs-backend" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
@@ -42,7 +42,7 @@ jobs:
        
       - name: image remove amtechtest_nginx
         run: |
-              echo "images=$(sudo docker images amtechtest_nginx)"
+              images=$(sudo docker images amtechtest_nginx)
               if [[ "$images" == "amtechtest_nginx" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
@@ -51,7 +51,7 @@ jobs:
                      
       - name: image remove ws-server
         run: |
-              echo "images=$(sudo docker images ws-server )"
+              images=$(sudo docker images ws-server)
               if [[ "$images" == " ws-server" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
@@ -61,7 +61,7 @@ jobs:
       - name: image remove nginx 
        
         run: |
-              echo "images=$(sudo docker images nginx )"
+              images=$(sudo docker images nginx)
               if [[ "$images" == "nginx" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
@@ -70,7 +70,7 @@ jobs:
 
       - name: image remove grafana 
         run: |
-              echo "images=$(sudo docker images grafana )"
+                images=$(sudo docker images grafana)
                 if [[ "$images" == " grafana" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
