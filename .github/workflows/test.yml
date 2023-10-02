@@ -23,7 +23,7 @@ jobs:
 
       - name: image remove css-frontend 
         run: |
-              echo "images=$(sudo docker images css-frontend)"
+              echo "images=$(sudo docker images css-frontend)" >> "$GITHUB_OUTPUT"
               if [[ "$images" == "ccs-frontend" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
@@ -33,7 +33,7 @@ jobs:
      
       - name: image remove css-backend
         run: |
-              echo "images=$(sudo docker images ccs-backend)"
+              echo "images=$(sudo docker images ccs-backend)" >> "$GITHUB_OUTPUT"
               if [[ "$images" == "ccs-backend" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
@@ -43,7 +43,7 @@ jobs:
        
       - name: image remove amtechtest_nginx
         run: |
-              echo "images=$(sudo docker images amtechtest_nginx)"
+              echo "images=$(sudo docker images amtechtest_nginx)" >> "$GITHUB_OUTPUT"
               if [[ "$images" == "amtechtest_nginx" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
@@ -53,7 +53,7 @@ jobs:
                      
       - name: image remove ws-server
         run: |
-              echo "images=$(sudo docker images ws-server)"
+              echo "images=$(sudo docker images ws-server)" >> "$GITHUB_OUTPUT"
               if [[ "$images" == " ws-server" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
@@ -64,7 +64,7 @@ jobs:
       - name: image remove nginx 
        
         run: |
-             echo "images=$(sudo docker images nginx)"
+             echo "images=$(sudo docker images nginx)" >> "$GITHUB_OUTPUT"
               if [[ "$images" == "nginx" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
@@ -74,7 +74,7 @@ jobs:
               
       - name: image remove grafana 
         run: |
-               echo "images=$(sudo docker images grafana)"
+               echo "images=$(sudo docker images grafana)" >> "$GITHUB_OUTPUT"
                 if [[ "$images" == " grafana" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
