@@ -29,6 +29,7 @@ jobs:
                      sudo docker image rm "$image"
               else
                    echo "Image $image is not available locally."
+              fi
      
       - name: image remove css-backend
         run: |
@@ -38,7 +39,7 @@ jobs:
                      sudo docker image rm "$image"
               else
                    echo "Image $image is not available locally."
-      
+              fi    
        
       - name: image remove amtechtest_nginx
         run: |
@@ -46,8 +47,9 @@ jobs:
               if [[ "$images" == "amtechtest_nginx" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
-                     else
-              echo "Image $image is not available locally."
+              else
+                      echo "Image $image is not available locally."
+              fi
                      
       - name: image remove ws-server
         run: |
@@ -55,9 +57,10 @@ jobs:
               if [[ "$images" == " ws-server" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
-                     else
-              echo "Image $image is not available locally."
-                     
+              else
+                   echo "Image $image is not available locally."
+               fi
+               
       - name: image remove nginx 
        
         run: |
@@ -67,7 +70,8 @@ jobs:
                      sudo docker image rm "$image"
               else
                     echo "Image $image is not available locally."
-
+              fi
+              
       - name: image remove grafana 
         run: |
                echo "images=$(sudo docker images grafana)"
@@ -76,7 +80,8 @@ jobs:
                      sudo docker image rm "$image"
                 else
                     echo "Image $image is not available locally."
-        
+                fi
+                
       - name: docker start
         # start and up all the containers
         run: sudo docker-compose up -d
