@@ -30,8 +30,8 @@ jobs:
                images: ${{ steps.image-css-frontend.outputs.images }}
         run: |
               if [[ "$images" == "ccs-frontend" ]]; then
-                   echo "Deleting $image ..."
-                     sudo docker image rm "$image"
+                   echo "Deleting ccs-frontend ..."
+                     sudo docker image rm ccs-frontend
               else
                    echo "Image $image is not available locally."
               fi
@@ -40,8 +40,8 @@ jobs:
         run: |
               echo "images=$(sudo docker images  --filter=reference='ccs-backend' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
               if [[ "$images" == "ccs-backend" ]]; then
-                   echo "Deleting $image ..."
-                     sudo docker image rm "$image"
+                   echo "Deleting ccs-backend ..."
+                     sudo docker image rm ccs-backend
               else
                    echo "Image $image is not available locally."
               fi    
@@ -50,8 +50,8 @@ jobs:
         run: |
               echo "images=$(sudo docker images  --filter=reference='"amtechtest_nginx' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
               if [[ "$images" == "amtechtest_nginx" ]]; then
-                   echo "Deleting $image ..."
-                     sudo docker image rm "$image"
+                   echo "Deleting amtechtest_nginx ..."
+                     sudo docker image rm amtechtest_nginx
               else
                       echo "Image $image is not available locally."
               fi
@@ -60,8 +60,8 @@ jobs:
         run: |
               echo "images=$(sudo docker images  --filter=reference='ws-server' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
               if [[ "$images" == " ws-server" ]]; then
-                   echo "Deleting $image ..."
-                     sudo docker image rm "$image"
+                   echo "Deleting ws-server ..."
+                     sudo docker image rm ws-server
               else
                    echo "Image $image is not available locally."
                fi
@@ -71,8 +71,8 @@ jobs:
         run: |
              echo "images=$(sudo docker images  --filter=reference='nginx' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
               if [[ "$images" == "nginx" ]]; then
-                   echo "Deleting $image ..."
-                     sudo docker image rm "$image"
+                   echo "Deleting nginx ..."
+                     sudo docker image rm nginx
               else
                     echo "Image $image is not available locally."
               fi
@@ -80,9 +80,9 @@ jobs:
       - name: image remove grafana 
         run: |
                echo "images=$(sudo docker images  --filter=reference='grafana' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
-                if [[ "$images" == " grafana" ]]; then
-                   echo "Deleting $image ..."
-                     sudo docker image rm "$image"
+                if [[ "$images" == "grafana" ]]; then
+                   echo "Deleting grafana ..."
+                     sudo docker image rm grafana
                 else
                     echo "Image $image is not available locally."
                 fi
