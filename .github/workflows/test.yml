@@ -21,9 +21,14 @@ jobs:
         # stop and down all the containers running..
         run: sudo docker-compose down
 
-      - name: image remove css-frontend 
+      - id: image-css-frontend 
         run: |
               echo "images=$(sudo docker images css-frontend)" >> "$GITHUB_OUTPUT"
+              
+      - name: image remove css-forntend
+        env:
+               images: ${{ steps.image-css-frontend.outputs.images }}
+        run: |
               if [[ "$images" == "ccs-frontend" ]]; then
                    echo "Deleting $image ..."
                      sudo docker image rm "$image"
