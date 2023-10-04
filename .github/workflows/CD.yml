@@ -50,5 +50,5 @@ jobs:
         run: sudo docker image rm grafana/grafana
         
       - name: docker start
-        # start and up all the containers
+        # start and up all the containers.
         run: sudo docker-compose up -d
