@@ -102,8 +102,8 @@ services:
       - GF_AUTH_DISABLE_SIGNOUT_MENU=true
       - GF_SERVER_DOMAIN=portal.amtech.technoloy
       - GF_SERVER_PROTOCOL= https
-      - GF_SERVER_CERT_FILE=/usr/grafana/cert.cert
-      - GF_SERVER_CERT_FILE=/usr/grafana/key.key
+      - GF_SERVER_CERT_FILE=/usr/grafana/amtech-grafana-cert.crt
+      - GF_SERVER_CERT_FILE=/usr/grafana/amtech-grafana-key.key
   ws-server:
     container_name: amtech-ws-server
     restart: on-failure
