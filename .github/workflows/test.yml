@@ -1,7 +1,7 @@
 name: Test
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "test" ]
 jobs:
   notify:
     runs-on: self-hosted
