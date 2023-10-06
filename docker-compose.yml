@@ -74,8 +74,8 @@ services:
     volumes:
       - ./provisioning/datasources:/etc/grafana/provisioning/datasources
       - ./provisioning/dashboards:/etc/grafana/provisioning/dashboards
-      - ./provisioning/datasources/amtech-grafana-cert.crt:/usr/grafana/amtech-grafana-cert.crt
-      - ./provisioning/datasources/amtech-grafana-key.key/:/usr/grafana/amtech-grafana-key.key
+      - ./provisioning/datasources/amtech-grafana-cert.crt:/usr/share/grafana/amtech-ccs-crt.crt
+      - ./provisioning/datasources/amtech-grafana-key.key/:/usr/share/grafana/amtech-grafana-key.key
       - grafana-data:/var/lib/grafana
     environment:
       - TERM=linux
