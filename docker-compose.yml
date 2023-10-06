@@ -74,7 +74,7 @@ services:
     volumes:
       - ./provisioning/datasources:/etc/grafana/provisioning/datasources
       - ./provisioning/dashboards:/etc/grafana/provisioning/dashboards
-      - ./provisioning/datasources/amtech-grafana-cert.crt:/usr/share/grafana/amtech-ccs-crt.crt
+      - ./provisioning/datasources/amtech-grafana-cert.crt:/usr/share/grafana/amtech-grafana-crt.crt
       - ./provisioning/datasources/amtech-grafana-key.key/:/usr/share/grafana/amtech-grafana-key.key
       - grafana-data:/var/lib/grafana
     environment:
@@ -103,7 +103,7 @@ services:
       - GF_DOMAIN=portal.amtech.technology
       - GF_SERVER_PROTOCOL=https
       - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/
-      - GF_SERVER_CERT_FILE=/usr/share/grafana/amtech-ccs-crt.crt
+      - GF_SERVER_CERT_FILE=/usr/share/grafana/amtech-grafana-crt.crt
       - GF_SERVER_CERT_FILE=/usr/share/grafana/amtech-grafana-key.key
   ws-server:
     container_name: amtech-ws-server
