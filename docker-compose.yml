@@ -100,7 +100,6 @@ services:
       - GF_AUTH_OAUTH_ALLOW_INSECURE_EMAIL_LOOKUP=true
       - GF_AUTH_GENERIC_OAUTH_AUTO_LOGIN=true
       - GF_AUTH_DISABLE_SIGNOUT_MENU=true
-      - GF_SERVER_DOMAIN=portal.amtech.technoloy
       - GF_SERVER_PROTOCOL= https
       - GF_SERVER_CERT_FILE=/usr/grafana/amtech-grafana-cert.crt
       - GF_SERVER_CERT_FILE=/usr/grafana/amtech-grafana-key.key
