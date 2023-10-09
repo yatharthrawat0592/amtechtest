@@ -104,7 +104,7 @@ services:
       - GF_SERVER_PROTOCOL=https
       - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/
       - GF_SERVER_CERT_FILE=/usr/share/grafana/amtech-grafana-crt.crt
-      - GF_SERVER_CERT_FILE=/usr/share/grafana/amtech-grafana-key.key
+      - GF_SERVER_CERT_KEY=/usr/share/grafana/amtech-grafana-key.key
   ws-server:
     container_name: amtech-ws-server
     restart: on-failure
