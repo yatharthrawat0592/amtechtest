@@ -123,6 +123,11 @@ jobs:
                 else
                     echo "Image grafana is not available locally."
                 fi
+      - name: set timeout
+        # set timeout to 120 ms
+        run:        
+              export DOCKER_CLIENT_TIMEOUT=120
+              export COMPOSE_HTTP_TIMEOUT=120
                 
       - name: docker start
         # start and up all the containers
