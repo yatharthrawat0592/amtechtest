@@ -111,15 +111,15 @@ jobs:
       - id: image-grafana
        # remove grafana image
         run: |
-              echo "images=$(sudo docker images  --filter=reference='grafana' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
+              echo "images=$(sudo docker images  --filter=reference='grafana/grafana' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
       - name: image remove grafana
         env:
                images: ${{ steps.image-image-grafana.outputs.images }}
         run: |      
-                if [[ "$images" == "grafana" ]]; then
+                if [[ "$images" == "grafana/grafana" ]]; then
                    echo "Deleting grafana ..."
-                     sudo docker image rm grafana
+                     sudo docker image rm grafana/grafana
                 else
                     echo "Image grafana is not available locally."
                 fi
