@@ -8,20 +8,26 @@ jobs:
 
     steps:
       - id: permission
+          # set permission to user
         run: sudo chown -R $USER:$USER /home/ubuntu/actions-runner/_work/amtechtest
         
       - uses: actions/checkout@v3
+       
       - name: update vm
+           # update vrtual machine 
         run: sudo apt-get update  
       
       - name: install docker
+            # Install Docker
         run: sudo apt install -y docker-compose 
 
       - name: docker stop
-        # stop and down all the containers running..
+        # stop Docker containers
         run: sudo docker-compose down
-
+        
+      
       - id: image-css-frontend 
+      # remove CCS-forntend image
         run: |
               echo "images=$(sudo docker images  --filter=reference='ccs-frontend' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
               
@@ -37,6 +43,7 @@ jobs:
               fi
      
       - id: image-css-backend 
+      # remove CCS-backend image
         run: |
               echo "images=$(sudo docker images  --filter=reference='ccs-backend' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
@@ -52,6 +59,7 @@ jobs:
                 fi    
        
       - id: image-amtechtest_nginx
+      # remove amtech_nginx image
         run: |
               echo "images=$(sudo docker images  --filter=reference='amtechtest_nginx' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
@@ -68,6 +76,7 @@ jobs:
                      
  
       - id: image-ws-server
+      # remove ws-server image
         run: |
               echo "images=$(sudo docker images  --filter=reference='ws-server' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
@@ -84,6 +93,7 @@ jobs:
 
                
       - id: image-nginx
+      # remove nginx image
         run: |
               echo "images=$(sudo docker images  --filter=reference='nginx' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
@@ -99,6 +109,7 @@ jobs:
                 fi
               
       - id: image-grafana
+       # remove grafana image
         run: |
               echo "images=$(sudo docker images  --filter=reference='grafana' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
