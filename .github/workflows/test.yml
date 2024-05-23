@@ -43,7 +43,7 @@ jobs:
               fi
      
       - id: image-css-backend 
-      # remove CCS-backend image
+      # remove CCS-backend image......
         run: |
               echo "images=$(sudo docker images  --filter=reference='ccs-backend' --format  "{{.Repository}}")" >> "$GITHUB_OUTPUT"
          
