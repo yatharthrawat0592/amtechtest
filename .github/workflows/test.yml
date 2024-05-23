@@ -128,7 +128,7 @@ jobs:
         run:        
               export DOCKER_CLIENT_TIMEOUT=120 && export COMPOSE_HTTP_TIMEOUT=120
                 
-      - name: docker start
+      - name: docker start.
         # start and up all the containers
         run: sudo docker-compose up -d
 
