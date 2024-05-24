@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('build and deploy') {
             steps {
-                 sh 'sudo chown -R $USER:$USER /home/ubuntu/actions-runner/_work/amtechtest'
-                 sh 'sudo docker-compose up -d'
+                 sh 'sudo -Schown -R $USER:$USER /home/ubuntu/actions-runner/_work/amtechtest'
+                 sh 'sudo -S docker-compose up -d'
             }
         }
        } 
