@@ -7,7 +7,7 @@ pipeline {
                  sh 'docker-compose up -d'
             }
         }
-        
+       } 
     } 
         
    // You can also define post-build actions here
