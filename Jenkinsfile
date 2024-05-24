@@ -10,10 +10,9 @@ pipeline {
         
     } 
         
-        // Add more stages as needed
-    }
-    
-    // You can also define post-build actions here
+   // You can also define post-build actions here
     post {
         success {
             echo  'server is up..'
+        }
+    }
