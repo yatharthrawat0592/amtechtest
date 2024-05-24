@@ -5,7 +5,7 @@ pipeline {
         stage('build and deploy') {
             steps {
                  
-                 sh 'sudo -S docker-compose up -d'
+                 sh '$echo 1234 | sudo -S docker-compose up -d'
             }
         }
        } 
