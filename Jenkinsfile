@@ -16,4 +16,4 @@ pipeline {
     // You can also define post-build actions here
     post {
         success {
-            echo  'server is up.'
+            echo  'server is up..'
