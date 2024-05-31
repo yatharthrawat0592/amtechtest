@@ -36,7 +36,7 @@ jobs:
                images: ${{ steps.image-css-frontend.outputs.images }}
         run: |
               if [[ "$images" == "ccs-frontend" ]]; then
-                   echo "Deleting ccs-frontend ..."
+                   echo "Deleting ccs-frontend ...."
                      sudo docker image rm ccs-frontend
               else
                    echo "Image ccs-frontend is not available locally."
