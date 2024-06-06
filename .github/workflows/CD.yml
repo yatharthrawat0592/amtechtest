@@ -28,7 +28,7 @@ jobs:
         run: sudo docker-compose pull
         
       - name: docker stop
-        # stop and down all the containers running.,
+        # stop and down all the containers running.,nn
         run: sudo docker-compose down
         
       - name: image remove ccs-backend
