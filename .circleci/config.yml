@@ -30,7 +30,7 @@ jobs:
       # Build and run Docker Compose services
       - run:
           name: Build and Run Docker Compose
-          command: docker-compose up -d 
+          command: sudo docker-compose up -d 
      
 
       # Save cache for dependencies
