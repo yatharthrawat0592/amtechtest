@@ -25,7 +25,7 @@ jobs:
       # Install Docker Compose
       - run:
           name: Install Docker Compose
-          command: sudo apt install docker-compose
+          command: sudp apt-get update && sudo apt install docker-compose
 
       # Build and run Docker Compose services
       - run:
