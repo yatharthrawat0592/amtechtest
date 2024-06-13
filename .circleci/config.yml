@@ -45,7 +45,7 @@ jobs:
           destination: test-reports
 
 workflows:
-  version: 2
+  version: 1
   build_and_test:
     jobs:
       - build
